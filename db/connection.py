@@ -70,8 +70,8 @@ def registerUser():
     if len(gender) == 0:
         errors.append("You did not enter gender")
 
-    # if gender != 'male' or gender != 'female' or gender != 'others':
-    #     errors.append("Enter 'male', 'female' or 'others' for gender")
+    if gender != 'male' and gender != 'female' and gender != 'others':
+        errors.append("Enter 'male', 'female' or 'others' for gender")
 
     if len(username) == 0:
         errors.append("You did not enter username: ")
@@ -91,15 +91,19 @@ def registerUser():
         # print("No errors")
         result = checkIfUsernameIsTaken(username)
 
+        # cursor.execute("SHOW TABLES")
+        # for tb in cursor:
+        #     print(tb)
         if result == None:
             # The username has not been taken, register the user...
-            cursor.execute("INSERT INTO `users` (`fullname`, `email`, `gender`, `username`, `password`) VALUE ('" + fullname + "', '" + email + "', '" + gender + "', '" + username + "', '" + password + "')")
-            print("Registered Successfully!")
-            for res in cursor:
-                if res != None:
-                    return res
-                else:
-                    return None
+            cursor.execute("INSERT INTO `users` (`fullname`, `email`, `gender`, `username`, `password`) VALUES ('" + fullname + "', '" + email + "', '" + gender + "', '" + username + "', '" + password + "')")
+            # print("Registered Successfully!")
+            print(cursor)
+            # for res in cursor:
+            #     if res != None:
+            #         return res
+            #     else:
+            #         return None
     else:
         # there are errors
         for err in errors:
