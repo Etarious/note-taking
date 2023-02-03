@@ -164,6 +164,7 @@ def createNote(author_id):
             print(err)
 
         cursor.close()
+        return False
 
 def whatNextDo(author_id):
     cursor = _db_conn.cursor()
@@ -176,6 +177,7 @@ def whatNextDo(author_id):
         if note:
             print("Note Created Successfully!")
             cursor.close()
+            return True
     elif whatNext == "R":
         # print("Reading note still under development!")
         title = input("Enter the title of the note: ").strip().lower()
@@ -200,7 +202,7 @@ def whatNextDo(author_id):
                 if result != None:
                     cursor.close()
                     return result
-                else:
+                elif result == None:
                     cursor.close()
                     return None
     elif whatNext == "C":

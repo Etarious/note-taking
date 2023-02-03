@@ -39,9 +39,9 @@ while True:
         # print(result[0])
         note_data = connection.whatNextDo(result[0])
 
-        # print(note_data)
+        # print(type(note_data))
 
-        if note_data != None:
+        if type(note_data) == 'tuple':
             print("\n-------------------------------------------------------")
             print("\n" + note_data[2].upper())
             print("\n-------------------------------------------------------")
